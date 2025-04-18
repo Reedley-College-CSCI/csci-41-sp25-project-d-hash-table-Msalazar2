@@ -11,4 +11,18 @@ struct ClientStatus {
     int lastContacted;
 };
 
+//here I create a struct for bucket to store the key, client status, and whether the slot is occupied or deleted.
+struct Bucket {
+    int key;
+    ClientStatus value;
+    bool isOccupied;
+    bool isDeleted;
+
+    Bucket() {
+        key = -1;
+        isOccupied = false;
+        isDeleted = false;
+    }
+}
+
 #endif
