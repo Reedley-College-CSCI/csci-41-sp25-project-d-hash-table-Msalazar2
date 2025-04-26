@@ -28,14 +28,15 @@ struct Bucket {
 //here I created a class with private members to set a table with 19 buckets and a function to place clients in buckets.
 class HashTable {
     private:
-        static const int TABLE_SIZE = 19;
-        Bucket table[TABLE_SIZE];
+        int TABLE_SIZE;
+        Bucket* table;
     
         int hash(int key) const {
             return key % TABLE_SIZE;
         }
     public:
         HashTable();
+        ~HashTable();
         bool insert(int key, const ClientStatus& value);
     
     };    
