@@ -150,6 +150,7 @@ class Clients { //here I added a class to hold structs
         void printQueue() const;
         void enqueueClient();
         void dequeueClient();
+        void recentlyAdded();
 
         private: 
          SinglyLinkedNode::TrashList trashbin;

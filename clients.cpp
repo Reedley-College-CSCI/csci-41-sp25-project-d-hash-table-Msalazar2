@@ -328,6 +328,33 @@ void Clients::printQueue() const {
     followUpQueue.PrintQueueClients();
 }
 
+void Clients::recentlyAdded() {
+    while(true) {
+        cout << "1. View Recently Added." << endl;
+        cout << "2. Enqueue recently added client." << endl;
+        cout << "3. Dequeue recently added client." << endl;
+        cout << "4. Return to Main Menu." << endl;
+        cout << "Enter option: ";
+        int option;
+        cin >> option;
+        cout << "-----------------------" << endl;
+        
+        if (cin.fail()) {
+            cout << "Invalid input. Enter valid input: 1,2,3" << endl;
+            cout << "-----------------------" << endl;
+            
+        } else if (option == 1) {
+            Clients::printQueue();
+        } else if (option == 2) {
+            Clients::enqueueClient();
+        } else if (option == 3) {
+            Clients::dequeueClient();
+        } else if (option == 4) {
+            break;
+    }
+}
+}
+
 //creating function to append deleted clients to the end of the list
 void SinglyLinkedNode::TrashList::Append(const AllClientData& deletedClient) {
     Node* newNode = new Node(deletedClient);

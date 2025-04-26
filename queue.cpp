@@ -45,7 +45,7 @@ void Queue::Enqueue(const AllClientData* newClient) {
  void Queue::PrintQueueClients() const {
     QueueNode* current = front;
 
-    if (front) {
+    if (!front) {
         cout << "Queue is Empty" << endl;
         return;
     }
