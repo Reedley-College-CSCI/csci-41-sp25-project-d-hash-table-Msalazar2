@@ -34,6 +34,9 @@ class HashTable {
         int hash(int key) const {
             return key % TABLE_SIZE;
         }
+    public:
+        HashTable();
+        bool insert(int key, const ClientStatus& value);
     
     };    
 
