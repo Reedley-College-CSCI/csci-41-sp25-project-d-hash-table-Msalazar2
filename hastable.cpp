@@ -2,6 +2,21 @@
 
 //here I create an insert function
 bool HashTable::insert(int key, const ClientStatus& value) {
+    int hashNum = hash(key);
 
-for (int i = 0; i < TABLE_SIZE; ++i)
-};
+for (int i = 0; i < TABLE_SIZE; ++i) {
+    int index = (hashNum + i * i) % TABLE_SIZE;
+    
+    if (!table[index].isOccupied) {
+        table[index].key = key;
+        table[index].value = value;
+        table[index].isOccupied = true;
+        table[index].isDeleted = false;
+
+        return true;
+    }
+}
+//here I will resize the table
+
+
+}
