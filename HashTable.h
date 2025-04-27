@@ -1,9 +1,10 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
-#include "clients.h"
 #include <string>
 using namespace std;
+
+struct AllClientData;
 
 
 //creating a struct to hold each clients sub status and last day contacted in each bucket.
