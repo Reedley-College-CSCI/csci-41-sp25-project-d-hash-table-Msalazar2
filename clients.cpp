@@ -456,7 +456,7 @@ void SinglyLinkedNode::TrashList::PrintDeletedClients() const {
 }
 
 void Clients::followUps(HashTable& hashTable) {
-    hashTable.autoCollectUnsubscribedClients(clientFile, capacity);
+    hashTable.unsubscribedClients(clientFile, capacity);
 
     while (true) {
         cout << "1. Display hash table contents" << endl;

@@ -7,11 +7,13 @@ g++ -std=c++11 project_c_marcelino_salazar.cpp clients.cpp queue.cpp -o project_
 #include "clients.h"
 #include "SortTracker.h"
 #include "Queue.h"
+#include "HashTable.h"
 
 using namespace std;
 
 int main() {
     Clients viewClients; //this class pushes capacity to constructor
+    HashTable hashTable; //this object is for the followUps function
    
     while(true) {
     cout << "MAIN MENU" << endl;
@@ -23,14 +25,15 @@ int main() {
     cout << "6. View Trash bin" << endl;
     cout << "7. Restore client" << endl;
     cout << "8. Recently added clients" << endl;
-    cout << "9. Quit" << endl;
-    cout << "Enter option (1,2,3,4,5,6,7,8,9): ";
+    cout << "9. Follow Ups (manage unsubscribed clients)" << endl;
+    cout << "10. Quit" << endl;
+    cout << "Enter option (1-10): ";
     int option;
     cin >> option;
     cout << "-----------------------" << endl;
 
     if (cin.fail()) {
-        cout << "Invalid input. Enter valid input: 1,2,3,4,5,6,7,8,9,10,11" << endl;
+        cout << "Invalid input. Enter valid input: 1-10" << endl;
         cout << "-----------------------" << endl;
         
     } else if (option == 1) {
@@ -60,11 +63,14 @@ int main() {
         viewClients.recentlyAdded();
 
     } else if (option == 9) {
+        viewClients.followUps(hashTable);
+
+    } else if (option == 10) {
         cout << "Closing...";
         break;
     
     } else {
-        cout << "Invalid input. Enter valid input: 1,2,3,4,5,6,7,8,9" << endl;
+        cout << "Invalid input. Enter valid input: 1-10" << endl;
         cout << "-----------------------" << endl;
     }
 }

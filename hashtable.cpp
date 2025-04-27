@@ -56,7 +56,7 @@ return 0;
 }
 
 //I will create a function to gathher only unsubscribed clients and insert them into the hash table.
-void HashTable::unsubcsribedClients(AllClientData* clientFile, int capacity) {
+void HashTable::unsubscribedClients(AllClientData* clientFile, int capacity) {
     for (int i = 0; i < capacity; ++i) {
         if (clientFile[i].campaignInfo.y == "no") {
             ClientStatus status;
@@ -67,3 +67,4 @@ void HashTable::unsubcsribedClients(AllClientData* clientFile, int capacity) {
         }
     }
 }
+
