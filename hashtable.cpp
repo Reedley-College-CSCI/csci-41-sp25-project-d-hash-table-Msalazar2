@@ -34,4 +34,21 @@ for (int i = 0; i < TABLE_SIZE; ++i) {
 int tempSize = TABLE_SIZE;
 int newSize = tempSize * 2;
 
+//create a temp pointer equivalent to table pointer.
+Bucket* tempTable = table;
+table = new Bucket[newSize];
+//here I generate a new hash number
+for (int i = 0; i < tempSize; ++i) {
+    if (tempTable[i].isOccupied) {
+        int newhashNum = tempTable[i].key % newSize;
+        //repeat quadratic probing
+        for (int i = 0; i < newSize; ++i) {
+            int index = (newhashNum + i * i) % newSize;
+            if (!table[index].isOccupied) {
+                table[newIndex] = tempTable[i];
+                break;
+            }
+        }
+    }
+}
 }
