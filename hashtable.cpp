@@ -76,7 +76,7 @@ void HashTable::display() const {
 //I will create a function to gathher only unsubscribed clients and insert them into the hash table.
 void HashTable::unsubscribedClients(AllClientData* clientFile, int capacity) {
     for (int i = 0; i < capacity; ++i) {
-        if (clientFile[i].campaignInfo.y == "no") {
+        if (clientFile[i].campaignInfo.y == "\"no\"") {
             ClientStatus status;
             status.subscription = clientFile[i].campaignInfo.y;
             status.lastContacted = clientFile[i].campaignInfo.pdays;
