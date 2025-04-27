@@ -43,26 +43,27 @@ for (int i = 0; i < tempSize; ++i) {
     if (tempTable[i].isOccupied) {
         int newhashNum = tempTable[i].key % newSize;
         //repeat quadratic probing
-        for (int i = 0; i < newSize; ++i) {
-            int index = (newhashNum + i * i) % newSize;
-            if (!table[index].isOccupied) {
+        for (int j = 0; j < newSize; ++j) {
+            int newIndex = (newhashNum + j * j) % newSize;
+            if (!table[newIndex].isOccupied) {
                 table[newIndex] = tempTable[i];
                 break;
             }
         }
     }
 }
+return 0;
 }
 
 //I will create a function to gathher only unsubscribed clients and insert them into the hash table.
 void HashTable::unsubcsribedClients(AllClientData* clientFile, int capacity) {
-    for (int i = 0, i < capacity; ++i) {
+    for (int i = 0; i < capacity; ++i) {
         if (clientFile[i].campaignInfo.y == "no") {
             ClientStatus status;
             status.subscription = clientFile[i].campaignInfo.y;
             status.lastContacted = clientFile[i].campaignInfo.pdays;
             //call the insert function and pass in these client ids and status info
-            insert(clientFile[i].clientInfo.id, status)
+            insert(clientFile[i].clientInfo.id, status);
         }
     }
 }

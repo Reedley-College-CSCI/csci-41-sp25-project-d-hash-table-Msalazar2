@@ -1,6 +1,7 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
+#include "clients.h"
 #include <string>
 using namespace std;
 
