@@ -38,6 +38,7 @@ class HashTable {
         HashTable();
         ~HashTable();
         bool insert(int key, const ClientStatus& value);
+        void unsubcsribedClients(AllClientData* clientFile, int capacity);
     
     };    
 
