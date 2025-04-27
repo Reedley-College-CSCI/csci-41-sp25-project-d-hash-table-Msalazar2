@@ -135,6 +135,7 @@ void Clients::loadfile() {
         getline(parse, temporaryLine, ';'); 
         clientFile[i].campaignInfo.previous = stoi(temporaryLine);
         getline(parse, clientFile[i].campaignInfo.poutcome, ';');
+        getline(parse, clientFile[i].campaignInfo.y, ';');
     }
     file.close();
 }

@@ -52,7 +52,7 @@ for (int i = 0; i < tempSize; ++i) {
         }
     }
 }
-return 0;
+return false;
 }
 
 //I create a display function with client status
