@@ -454,3 +454,33 @@ void SinglyLinkedNode::TrashList::PrintDeletedClients() const {
         current = current->next;
     }
 }
+
+void Clients::followUps(HashTable& hashTable) {
+    hashTable.autoCollectUnsubscribedClients(clientFile, capacity);
+
+    while (true) {
+        cout << "1. Display hash table contents" << endl;
+        cout << "2. Return to Main Menu" << endl;
+        cout << "Enter option (1,2): ";
+
+        int followUpOption;
+        cin >> followUpOption;
+        cout << "-----------------------" << endl;
+
+        if (cin.fail()) {
+            cout << "Invalid input. Please enter 1, 2" << endl;
+            cout << "-----------------------" << endl;
+        }
+
+        if (followUpOption == 1) {
+            cout << "Displaying all clients in hash table:" << endl;
+            hashTable.display();
+        } else if (followUpOption == 2) {
+            cout << "Returning to Main Menu..." << endl;
+            break;
+        }
+        else {
+            cout << "Invalid option. Please enter 1,2." << endl;
+        }
+    }
+}

@@ -7,7 +7,7 @@
 #include <string>
 #include "SortTracker.h"
 #include "Queue.h"
-
+#include "HashTable.h"
 
 using namespace std;
 
@@ -151,6 +151,8 @@ class Clients { //here I added a class to hold structs
         void enqueueClient();
         void dequeueClient();
         void recentlyAdded();
+        void followUps(HashTable& hashTable);
+
 
         private: 
          SinglyLinkedNode::TrashList trashbin;
