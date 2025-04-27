@@ -55,6 +55,24 @@ for (int i = 0; i < tempSize; ++i) {
 return 0;
 }
 
+//I create a display function with client status
+void HashTable::display() const {
+    for (int i = 0; i < TABLE_SIZE; ++i) {
+        cout << "[" << i << "] ";
+
+        if (table[i].isOccupied) {
+            cout << "ID: " << table[i].key 
+                 << ", Subscription: " << table[i].value.subscription
+                 << ", Days Since Last Contact: " << table[i].value.lastContacted 
+                 << endl;
+        }
+       
+        else {
+            cout << "EMPTY" << endl;
+        }
+    }
+}
+
 //I will create a function to gathher only unsubscribed clients and insert them into the hash table.
 void HashTable::unsubscribedClients(AllClientData* clientFile, int capacity) {
     for (int i = 0; i < capacity; ++i) {

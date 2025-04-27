@@ -39,7 +39,7 @@ class HashTable {
         HashTable();
         ~HashTable();
         bool insert(int key, const ClientStatus& value);
-        void display();
+        void display() const;
         void unsubscribedClients(AllClientData* clientFile, int capacity);
     
     };    

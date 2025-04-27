@@ -5,9 +5,9 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "HashTable.h"
 #include "SortTracker.h"
 #include "Queue.h"
-#include "HashTable.h"
 
 using namespace std;
 

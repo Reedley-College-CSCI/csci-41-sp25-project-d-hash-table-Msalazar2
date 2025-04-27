@@ -2,6 +2,7 @@
 #include "clients.h"
 #include "SortTracker.h"
 #include "Queue.h"
+#include "HashTable.h"
 
 Clients::Clients() {
     clientFile = nullptr;
