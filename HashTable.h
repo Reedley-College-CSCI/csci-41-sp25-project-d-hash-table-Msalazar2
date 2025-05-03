@@ -42,6 +42,7 @@ class HashTable {
         bool insert(int key, const ClientStatus& value);
         void display() const;
         void unsubscribedClients(AllClientData* clientFile, int capacity);
+        void searchPdays(int minDays);
     
     };    
 

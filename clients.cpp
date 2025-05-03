@@ -451,15 +451,16 @@ void Clients::followUps(HashTable& hashTable) {
 
     while (true) {
         cout << "1. Display hash table contents" << endl;
-        cout << "2. Return to Main Menu" << endl;
-        cout << "Enter option (1,2): ";
+        cout << "2. Search by days since last contact" << endl;
+        cout << "3. Return to Main Menu" << endl;
+        cout << "Enter option (1-3): ";
 
         int followUpOption;
         cin >> followUpOption;
         cout << "-----------------------" << endl;
 
         if (cin.fail()) {
-            cout << "Invalid input. Please enter 1, 2" << endl;
+            cout << "Invalid input. Please enter 1-3" << endl;
             cout << "-----------------------" << endl;
         }
 
@@ -467,11 +468,21 @@ void Clients::followUps(HashTable& hashTable) {
             cout << "Displaying all clients in hash table:" << endl;
             hashTable.display();
         } else if (followUpOption == 2) {
+            int minDays;
+            cout << "Enter minimum days since last contact (1-60): ";
+            cin >> minDays;
+            if (minDays >= 1 && minDays <= 60) {
+                hashTable.searchPdays(minDays);
+            } else {
+                cout << "Invalid input. Please enter a number between 1 and 60.\n";
+            }
+
+        } else if (followUpOption == 3) {
             cout << "Returning to Main Menu..." << endl;
             break;
         }
         else {
-            cout << "Invalid option. Please enter 1,2." << endl;
+            cout << "Invalid option. Please enter 1-3" << endl;
         }
     }
 }
