@@ -85,4 +85,28 @@ void HashTable::unsubscribedClients(AllClientData* clientFile, int capacity) {
         }
     }
 }
+//here I will create a function to search by pdays with a threshold of 60 days.
+void searchPdays(int minDays) {
+    cout << "Searching..." << endl;
+
+    bool dayFound = false;
+
+    for (int i = 0; i < size; i++) {
+        if (table[i].occupied && !table[i].deleted) {
+            ClientStatus client = table[i].value;
+            if (client.pdays < minDays) continue;
+            cout << "Clients with " << minDays << "or more: \n";
+            cout << "ID: " << client.id;
+            cout << "Subscription: " << client.y;
+            cout << "Days since last contact: " << client.pdays << endl;
+
+            dayFound = true;
+        }
+    }
+
+    if (!dayFound) {
+        cout << "No matches";
+    }
+    
+}
 
