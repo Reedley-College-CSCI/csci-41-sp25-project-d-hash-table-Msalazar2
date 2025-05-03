@@ -19,10 +19,10 @@ struct ClientData {
     string education;
 
     void print() const {
-        cout << "ID Number: " << id << endl;
+        cout << "ID number: " << id << endl;
         cout << "Age: " << age << endl;
         cout << "Occupation: " << job << endl;
-        cout << "Marital Status: " << marital << endl;
+        cout << "Marital status: " << marital << endl;
         cout << "Education: " << education << endl;
         cout << "-----------------------" << endl;
     }
@@ -35,10 +35,10 @@ struct ClientBankData {
     string loan;
     
     void print() const {
-        cout << "Default record: " << defaulted << endl;
+        cout << "Defaults record: " << defaulted << endl;
         cout << "Average yearly balance: " << balance << endl;
-        cout << "Housing Loans: " << housing << endl;
-        cout << "Personal Loans: " << loan << endl;
+        cout << "Housing loans: " << housing << endl;
+        cout << "Personal loans: " << loan << endl;
         cout << "-----------------------" << endl;
     }
 };
@@ -48,21 +48,16 @@ struct CampaignData {
     int day;
     string month;
     int duration;
-    int campaign;
     int pdays;
-    int previous;
-    string poutcome;
     string y;
 
     void print() const {
-        cout << "Current Result: " << y << endl;
-        cout << "Contact Type: " << contact << endl;
-        cout << "Last day of the week contacted: " << day << endl;
-        cout << "Last month contacted: " << month << endl;
+        cout << "Subscription status: " << y << endl;
+        cout << "Contact type: " << contact << endl;
+        cout << "Day of the month contacted: " << day << endl;
+        cout << "Month contacted: " << month << endl;
         cout << "Call duration (sec): " << duration << endl;
         cout << "Days since last day contacted: " << pdays << endl;
-        cout << "Number of contacts: " << previous << endl;
-        cout << "Previous Result: " << poutcome << endl;
         cout << "-----------------------" << endl;
     }
 };

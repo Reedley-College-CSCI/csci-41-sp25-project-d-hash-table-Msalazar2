@@ -129,12 +129,7 @@ void Clients::loadfile() {
         getline(parse, temporaryLine, ';'); 
         clientFile[i].campaignInfo.duration = stoi(temporaryLine);
         getline(parse, temporaryLine, ';'); 
-        clientFile[i].campaignInfo.campaign = stoi(temporaryLine);
-        getline(parse, temporaryLine, ';'); 
         clientFile[i].campaignInfo.pdays = stoi(temporaryLine);
-        getline(parse, temporaryLine, ';'); 
-        clientFile[i].campaignInfo.previous = stoi(temporaryLine);
-        getline(parse, clientFile[i].campaignInfo.poutcome, ';');
         getline(parse, clientFile[i].campaignInfo.y, ';');
     }
     file.close();
@@ -201,10 +196,8 @@ void Clients::addClient() {  //here I create a function to add a new client file
                 << clientFile[capacity - 1].campaignInfo.day << ";"
                 << clientFile[capacity - 1].campaignInfo.month << ";"
                 << clientFile[capacity - 1].campaignInfo.duration << ";"
-                << clientFile[capacity - 1].campaignInfo.campaign << ";"
                 << clientFile[capacity - 1].campaignInfo.pdays << ";"
-                << clientFile[capacity - 1].campaignInfo.previous << ";"
-                << clientFile[capacity - 1].campaignInfo.poutcome << "\n";
+                << clientFile[capacity - 1].campaignInfo.y << "\n";
         outfile.close();
     
         clientFile[capacity - 1].print();
@@ -267,10 +260,8 @@ void Clients::removeClient() {
                     << clientFile[i].campaignInfo.day << ";"
                     << clientFile[i].campaignInfo.month << ";"
                     << clientFile[i].campaignInfo.duration << ";"
-                    << clientFile[i].campaignInfo.campaign << ";"
                     << clientFile[i].campaignInfo.pdays << ";"
-                    << clientFile[i].campaignInfo.previous << ";"
-                    << clientFile[i].campaignInfo.poutcome << "\n";
+                    << clientFile[i].campaignInfo.y << "\n";
         }
         outfile.close();
     } else {
@@ -301,10 +292,8 @@ if (outfile.is_open()) {
                 << clientFile[i].campaignInfo.day << ";"
                 << clientFile[i].campaignInfo.month << ";"
                 << clientFile[i].campaignInfo.duration << ";"
-                << clientFile[i].campaignInfo.campaign << ";"
                 << clientFile[i].campaignInfo.pdays << ";"
-                << clientFile[i].campaignInfo.previous << ";"
-                << clientFile[i].campaignInfo.poutcome << "\n";
+                << clientFile[i].campaignInfo.y << "\n";
     }
     outfile.close();
 }

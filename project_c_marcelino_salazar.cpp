@@ -17,6 +17,7 @@ int main() {
    
     while(true) {
     cout << "MAIN MENU" << endl;
+    cout << "-----------------------" << endl;
     cout << "1. View all clients" << endl;
     cout << "2. Search ID" << endl;
     cout << "3. Add new client file" << endl;
