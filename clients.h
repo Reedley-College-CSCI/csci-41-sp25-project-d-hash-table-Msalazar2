@@ -50,6 +50,7 @@ struct CampaignData {
     int duration;
     int pdays;
     string y;
+    int followups;
 
     void print() const {
         cout << "Subscription status: " << y << endl;
@@ -58,6 +59,7 @@ struct CampaignData {
         cout << "Month contacted: " << month << endl;
         cout << "Call duration (sec): " << duration << endl;
         cout << "Days since last day contacted: " << pdays << endl;
+        cout << "Number of follow-ups: " << followups << endl;
         cout << "-----------------------" << endl;
     }
 };
@@ -146,6 +148,7 @@ class Clients { //here I added a class to hold structs
         void enqueueClient();
         void dequeueClient();
         void recentlyAdded();
+        void updateFollowups(); 
         void followUps(HashTable& hashTable);
 
 

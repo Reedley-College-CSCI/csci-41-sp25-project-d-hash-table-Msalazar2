@@ -131,6 +131,8 @@ void Clients::loadfile() {
         getline(parse, temporaryLine, ';'); 
         clientFile[i].campaignInfo.pdays = stoi(temporaryLine);
         getline(parse, clientFile[i].campaignInfo.y, ';');
+        getline(parse, temporaryLine, ';'); 
+        clientFile[i].campaignInfo.followups = stoi(temporaryLine);
     }
     file.close();
 }
@@ -446,13 +448,29 @@ void SinglyLinkedNode::TrashList::PrintDeletedClients() const {
     }
 }
 
+//creating function that updates clients follow up information and only removes from table if client subscribes. MOVE TO HASH.CPP
+void Clients::updateFollowups() {
+    int id;
+    cout << "Enter ID of client: ";
+    cin >> id;
+
+    for (int i = 0; i < capacity; ++i) {
+        if (clientFile[i].clientInfo.id == id) {
+            string input;
+            cout << "Did you follow up? (yes/no): ";
+            cin >> input;
+        }
+    }
+}
+
 void Clients::followUps(HashTable& hashTable) {
     hashTable.unsubscribedClients(clientFile, capacity);
 
     while (true) {
         cout << "1. Display hash table contents" << endl;
         cout << "2. Search by days since last contact" << endl;
-        cout << "3. Return to Main Menu" << endl;
+        cout << "3. Update follow-up" << endl;
+        cout << "4. Return to Main Menu" << endl;
         cout << "Enter option (1-3): ";
 
         int followUpOption;
@@ -476,8 +494,11 @@ void Clients::followUps(HashTable& hashTable) {
             } else {
                 cout << "Invalid input. Please enter a number between 1 and 60.\n";
             }
-
+        
         } else if (followUpOption == 3) {
+            updateFollowups();
+
+        } else if (followUpOption == 4) {
             cout << "Returning to Main Menu..." << endl;
             break;
         }
