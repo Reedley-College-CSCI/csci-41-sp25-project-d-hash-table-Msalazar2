@@ -199,7 +199,8 @@ void Clients::addClient() {  //here I create a function to add a new client file
                 << clientFile[capacity - 1].campaignInfo.month << ";"
                 << clientFile[capacity - 1].campaignInfo.duration << ";"
                 << clientFile[capacity - 1].campaignInfo.pdays << ";"
-                << clientFile[capacity - 1].campaignInfo.y << "\n";
+                << clientFile[capacity - 1].campaignInfo.y << ";"
+                << clientFile[capacity - 1].campaignInfo.followups << "\n";
         outfile.close();
     
         clientFile[capacity - 1].print();
@@ -247,7 +248,7 @@ void Clients::removeClient() {
 
     ofstream outfile("bank_full.csv");
     if (outfile.is_open()) {
-        outfile << "age;job;marital;education;default;balance;housing;loan;contact;day;month;duration;campaign;pdays;previous;poutcome\n"; // CSV header
+        outfile << "age;job;marital;education;default;balance;housing;loan;contact;day;month;duration;pdays;y;followUps\n"; // CSV header
 
         for (int i = 0; i < capacity; i++) {
             outfile << clientFile[i].clientInfo.age << ";"
@@ -263,7 +264,8 @@ void Clients::removeClient() {
                     << clientFile[i].campaignInfo.month << ";"
                     << clientFile[i].campaignInfo.duration << ";"
                     << clientFile[i].campaignInfo.pdays << ";"
-                    << clientFile[i].campaignInfo.y << "\n";
+                    << clientFile[i].campaignInfo.y << ";"
+                    << clientFile[i].campaignInfo.followups << "\n";
         }
         outfile.close();
     } else {
@@ -279,7 +281,7 @@ void Clients::restoreClient() {
 
     ofstream outfile("bank_full.csv");
 if (outfile.is_open()) {
-    outfile << "age;job;marital;education;default;balance;housing;loan;contact;day;month;duration;campaign;pdays;previous;poutcome\n";
+    outfile << "age;job;marital;education;default;balance;housing;loan;contact;day;month;duration;;pdays;y;followUps\n";
 
     for (int i = 0; i < capacity; i++) {
         outfile << clientFile[i].clientInfo.age << ";"
@@ -295,7 +297,8 @@ if (outfile.is_open()) {
                 << clientFile[i].campaignInfo.month << ";"
                 << clientFile[i].campaignInfo.duration << ";"
                 << clientFile[i].campaignInfo.pdays << ";"
-                << clientFile[i].campaignInfo.y << "\n";
+                << clientFile[i].campaignInfo.y << ";"
+                << clientFile[i].campaignInfo.followUps << "\n";
     }
     outfile.close();
 }
@@ -459,8 +462,47 @@ void Clients::updateFollowups() {
             string input;
             cout << "Did you follow up? (yes/no): ";
             cin >> input;
+            //if yes then update day and month of contact
+            if (input == "yes") {
+                clientFile[i].campaignInfo.followups++;
+                cout << "Day of contact: ";
+                cin >> clientFile[i].campaignInfo.day;
+                cout << " Month of contact: ";
+                cin >> clientFile[i].campaignInfo.month;
+
+                ofstream outfile("bank_full.csv");
+                if (outfile.is_open()) {
+                    outfile << "age;job;marital;education;default;balance;housing;loan;contact;day;month;duration;;pdays;y;followUps\n";
+                    for (int j = 0; j < capacity; j++) {
+                        outfile << clientFile[j].clientInfo.age << ";"
+                                << clientFile[j].clientInfo.job << ";"
+                                << clientFile[j].clientInfo.marital << ";"
+                                << clientFile[j].clientInfo.education << ";"
+                                << clientFile[j].clientBankInfo.defaulted << ";"
+                                << clientFile[j].clientBankInfo.balance << ";"
+                                << clientFile[j].clientBankInfo.housing << ";"
+                                << clientFile[j].clientBankInfo.loan << ";"
+                                << clientFile[j].campaignInfo.contact << ";"
+                                << clientFile[j].campaignInfo.day << ";"
+                                << clientFile[j].campaignInfo.month << ";"
+                                << clientFile[j].campaignInfo.duration << ";"
+                                << clientFile[j].campaignInfo.pdays << ";"
+                                << clientFile[j].campaignInfo.y << ";"
+                                << clientFile[j].campaignInfo.followups << "\n";
+                    }
+                    outfile.close();
+                }
+
+            cout << "Has the client subscribed? (yes/no): ";
+            cin >> input;
+            if (input == "yes") {
+                clientFile[i].campaignInfo.y = "yes";
+                remove(id);
+                cout << "Client removed from follow-up list.\n";
+            }
         }
     }
+}
 }
 
 void Clients::followUps(HashTable& hashTable) {
@@ -471,14 +513,14 @@ void Clients::followUps(HashTable& hashTable) {
         cout << "2. Search by days since last contact" << endl;
         cout << "3. Update follow-up" << endl;
         cout << "4. Return to Main Menu" << endl;
-        cout << "Enter option (1-3): ";
+        cout << "Enter option (1-4): ";
 
         int followUpOption;
         cin >> followUpOption;
         cout << "-----------------------" << endl;
 
         if (cin.fail()) {
-            cout << "Invalid input. Please enter 1-3" << endl;
+            cout << "Invalid input. Please enter 1-4" << endl;
             cout << "-----------------------" << endl;
         }
 
@@ -503,7 +545,7 @@ void Clients::followUps(HashTable& hashTable) {
             break;
         }
         else {
-            cout << "Invalid option. Please enter 1-3" << endl;
+            cout << "Invalid option. Please enter 1-4" << endl;
         }
     }
 }

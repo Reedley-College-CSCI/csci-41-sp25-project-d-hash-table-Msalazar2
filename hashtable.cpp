@@ -112,3 +112,7 @@ void HashTable::searchPdays(int minDays) {
     cout << "" << endl;
 }
 
+void HashTable::remove(int id) {
+    
+}
+
