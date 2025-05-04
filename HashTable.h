@@ -43,8 +43,7 @@ class HashTable {
         void display() const;
         void unsubscribedClients(AllClientData* clientFile, int capacity);
         void searchPdays(int minDays);
-        bool remove(int key);
-        void updateFollowups(AllClientData* clientFile, int capacity); 
+        bool remove(int key); 
     
     };    
 
