@@ -298,7 +298,7 @@ if (outfile.is_open()) {
                 << clientFile[i].campaignInfo.duration << ";"
                 << clientFile[i].campaignInfo.pdays << ";"
                 << clientFile[i].campaignInfo.y << ";"
-                << clientFile[i].campaignInfo.followUps << "\n";
+                << clientFile[i].campaignInfo.followups << "\n";
     }
     outfile.close();
 }
@@ -451,60 +451,6 @@ void SinglyLinkedNode::TrashList::PrintDeletedClients() const {
     }
 }
 
-//creating function that updates clients follow up information and only removes from table if client subscribes. MOVE TO HASH.CPP
-void Clients::updateFollowups() {
-    int id;
-    cout << "Enter ID of client: ";
-    cin >> id;
-
-    for (int i = 0; i < capacity; ++i) {
-        if (clientFile[i].clientInfo.id == id) {
-            string input;
-            cout << "Did you follow up? (yes/no): ";
-            cin >> input;
-            //if yes then update day and month of contact
-            if (input == "yes") {
-                clientFile[i].campaignInfo.followups++;
-                cout << "Day of contact: ";
-                cin >> clientFile[i].campaignInfo.day;
-                cout << " Month of contact: ";
-                cin >> clientFile[i].campaignInfo.month;
-
-                ofstream outfile("bank_full.csv");
-                if (outfile.is_open()) {
-                    outfile << "age;job;marital;education;default;balance;housing;loan;contact;day;month;duration;;pdays;y;followUps\n";
-                    for (int j = 0; j < capacity; j++) {
-                        outfile << clientFile[j].clientInfo.age << ";"
-                                << clientFile[j].clientInfo.job << ";"
-                                << clientFile[j].clientInfo.marital << ";"
-                                << clientFile[j].clientInfo.education << ";"
-                                << clientFile[j].clientBankInfo.defaulted << ";"
-                                << clientFile[j].clientBankInfo.balance << ";"
-                                << clientFile[j].clientBankInfo.housing << ";"
-                                << clientFile[j].clientBankInfo.loan << ";"
-                                << clientFile[j].campaignInfo.contact << ";"
-                                << clientFile[j].campaignInfo.day << ";"
-                                << clientFile[j].campaignInfo.month << ";"
-                                << clientFile[j].campaignInfo.duration << ";"
-                                << clientFile[j].campaignInfo.pdays << ";"
-                                << clientFile[j].campaignInfo.y << ";"
-                                << clientFile[j].campaignInfo.followups << "\n";
-                    }
-                    outfile.close();
-                }
-
-            cout << "Has the client subscribed? (yes/no): ";
-            cin >> input;
-            if (input == "yes") {
-                clientFile[i].campaignInfo.y = "yes";
-                remove(id);
-                cout << "Client removed from follow-up list.\n";
-            }
-        }
-    }
-}
-}
-
 void Clients::followUps(HashTable& hashTable) {
     hashTable.unsubscribedClients(clientFile, capacity);
 
@@ -538,7 +484,7 @@ void Clients::followUps(HashTable& hashTable) {
             }
         
         } else if (followUpOption == 3) {
-            updateFollowups();
+            hashTable.updateFollowups(clientFile, capacity);
 
         } else if (followUpOption == 4) {
             cout << "Returning to Main Menu..." << endl;

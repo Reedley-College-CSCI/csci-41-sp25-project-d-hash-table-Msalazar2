@@ -148,7 +148,6 @@ class Clients { //here I added a class to hold structs
         void enqueueClient();
         void dequeueClient();
         void recentlyAdded();
-        void updateFollowups(); 
         void followUps(HashTable& hashTable);
 
 
