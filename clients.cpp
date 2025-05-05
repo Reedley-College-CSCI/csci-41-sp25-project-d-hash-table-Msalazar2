@@ -468,11 +468,23 @@ void Clients::updateFollowups(HashTable& hashTable) {
                 cout << "Day of contact: ";
                 cin >> clientFile[i].campaignInfo.day;
                 cout << "Month of contact: ";
-                cin >> clientFile[i].campaignInfo.month;
+                cin >> input;
+                clientFile[i].campaignInfo.month = "\"" + input + "\"";
+                //only allow user to remove subscribed clients    
+                cout << "Has the client subscribed? (yes/no): ";
+                cin >> input;
+                clientFile[i].campaignInfo.y = "\"" + input + "\"";
+                if (clientFile[i].campaignInfo.y == "\"yes\"") {
+                    //need to create remove function
+                    hashTable.remove(id);
+                    cout << "Client removed from follow-up list.\n";
+                } else {
+                    cout << "Follow-up with client again in no more than 30 days.\n";
+                }
                 //update csv file accordingly
                 ofstream outfile("bank_full.csv");
                 if (outfile.is_open()) {
-                    outfile << "age;job;marital;education;default;balance;housing;loan;contact;day;month;duration;;pdays;y;followUps\n";
+                    outfile << "age;job;marital;education;default;balance;housing;loan;contact;day;month;duration;pdays;y;followUps\n";
                     for (int j = 0; j < capacity; j++) {
                         outfile << clientFile[j].clientInfo.age << ";"
                                 << clientFile[j].clientInfo.job << ";"
@@ -492,15 +504,6 @@ void Clients::updateFollowups(HashTable& hashTable) {
                     }
                     outfile.close();
                 }
-            //only allow user to remove subscribed clients    
-            cout << "Has the client subscribed? (yes/no): ";
-            cin >> input;
-            if (input == "yes") {
-                clientFile[i].campaignInfo.y = "\"yes\"";
-                //need to create remove function
-                hashTable.remove(id);
-                cout << "Client removed from follow-up list.\n";
-            }
         }
     }
 }
