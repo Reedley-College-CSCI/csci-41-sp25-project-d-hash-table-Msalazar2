@@ -1,5 +1,5 @@
 /* TO RUN USE:
-g++ -std=c++11 project_c_marcelino_salazar.cpp clients.cpp queue.cpp -o project_c_marcelino_salazar
+g++ -std=c++11 project_c_marcelino_salazar.cpp clients.cpp queue.cpp hashtable.cpp -o project_c_marcelino_salazar   
 ./project_c_marcelino_salazar
 */
 
@@ -34,6 +34,8 @@ int main() {
     cout << "-----------------------" << endl;
 
     if (cin.fail()) {
+        cin.clear();
+        cin.ignore();
         cout << "Invalid input. Enter valid input: 1-10" << endl;
         cout << "-----------------------" << endl;
         
@@ -71,11 +73,10 @@ int main() {
         break;
     
     } else {
-        cout << "Invalid input. Enter valid input: 1-10" << endl;
-        cout << "-----------------------" << endl;
+            cout << "Invalid input. Enter valid input: 1-10" << endl;
+            cout << "-----------------------" << endl;
     }
 }
-
 
     return 0;
 

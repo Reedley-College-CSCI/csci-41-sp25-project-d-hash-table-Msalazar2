@@ -454,25 +454,74 @@ void SinglyLinkedNode::TrashList::PrintDeletedClients() const {
 //creating function that updates clients follow up information and only removes from table if client subscribes. MOVE TO HASH.CPP
 void Clients::updateFollowups(HashTable& hashTable) {
     int id;
+    int size = hashTable.tableSize();
+    string months[12] = {"jan", "feb", "mar", "apr", "may", "jun",
+    "jul", "aug", "sep", "oct", "nov", "dec"
+};
     cout << "Enter ID of client: ";
     cin >> id;
+    if (cin.fail()) {
+        cin.clear();
+        cin.ignore();
+        cout << "Invalid input. Please enter correct ID.";
+        return;
+    }
+
+    if (id < 10000) {
+        cout << "Invalid ID. Try again.\n";
+        return;
+    }
 
     for (int i = 0; i < capacity; ++i) {
         if (clientFile[i].clientInfo.id == id) {
             string input;
             cout << "Did you follow up? (yes/no): ";
             cin >> input;
+            if (input != "yes" && input != "no") {
+                cout << "Invalid input. Please enter 'yes' or 'no'.\n";
+                return;
+            }
             //if yes then increment followup and update day and month of contact
             if (input == "yes") {
                 clientFile[i].campaignInfo.followups++;
                 cout << "Day of contact: ";
                 cin >> clientFile[i].campaignInfo.day;
+                if (cin.fail() || clientFile[i].campaignInfo.day < 1 || clientFile[i].campaignInfo.day > 31) {
+                    cin.clear();
+                    cin.ignore();
+                    cout << "Invalid day. Please enter a number between 1 and 31.\n";
+                    return;
+                }
                 cout << "Month of contact: ";
                 cin >> input;
+                if (cin.fail()) {
+                    cin.clear();
+                    cin.ignore();
+                    cout << "Invalid input. Please enter abbreviated month (jan, feb, etc).\n";
+                    return; 
+                }
+                //chech for correct month input as abbreviations
+                bool validMonth = false;
+                for (int m = 0; m < 12; ++m) {
+                    if (input == months[m]) {
+                        validMonth = true;
+                        break;
+                    }
+                }
+
+                if (!validMonth) {
+                    cout << "Invalid input. Please enter abbreviated month (jan, feb, etc).\n";
+                    return;
+                }
+
                 clientFile[i].campaignInfo.month = "\"" + input + "\"";
                 //only allow user to remove subscribed clients    
                 cout << "Has the client subscribed? (yes/no): ";
                 cin >> input;
+                if (input != "yes" && input != "no") {
+                    cout << "Invalid input. Please enter 'yes' or 'no'.\n";
+                    return;
+                }
                 clientFile[i].campaignInfo.y = "\"" + input + "\"";
                 if (clientFile[i].campaignInfo.y == "\"yes\"") {
                     //need to create remove function
@@ -508,6 +557,7 @@ void Clients::updateFollowups(HashTable& hashTable) {
     }
 }
 cout << "-----------------------" << endl;
+return;
 }
 
 
@@ -527,8 +577,11 @@ void Clients::followUps(HashTable& hashTable) {
         cout << "-----------------------" << endl;
 
         if (cin.fail()) {
+            cin.clear();
+            cin.ignore();
             cout << "Invalid input. Please enter 1-4" << endl;
             cout << "-----------------------" << endl;
+            return;
         }
 
         if (followUpOption == 1) {

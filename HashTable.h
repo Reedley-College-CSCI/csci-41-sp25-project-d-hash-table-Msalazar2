@@ -44,6 +44,9 @@ class HashTable {
         void unsubscribedClients(AllClientData* clientFile, int capacity);
         void searchPdays(int minDays);
         bool remove(int key); 
+        int tableSize() {
+            return TABLE_SIZE;
+        }
     
     };    
 

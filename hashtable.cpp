@@ -128,6 +128,7 @@ bool HashTable::remove(int key) {
         int index = (hashCode + i * i) % TABLE_SIZE;
         //stop if slot is not in use
         if (!table[index].isOccupied && !table[index].isDeleted) {
+            cout << "Client ID " << key << " not found.\n";
             return false;
         }
         //update bucket values if key matches
@@ -137,7 +138,7 @@ bool HashTable::remove(int key) {
             return true;
         }
     }
-
+    cout << "Client ID " << key << " not found.\n";
     return false;
 }
 
