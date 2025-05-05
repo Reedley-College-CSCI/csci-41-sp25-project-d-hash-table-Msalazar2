@@ -14,7 +14,7 @@ HashTable::~HashTable() {
     delete[] table;
 }
 
-
+int collisionCount = 0;
 //here I create an insert function
 bool HashTable::insert(int key, const ClientStatus& value) {
     int hashNum = hash(key);
@@ -29,6 +29,8 @@ for (int i = 0; i < TABLE_SIZE; ++i) {
         table[index].isDeleted = false;
 
         return true;
+    } else {
+        collisionCount++;
     }
 }
 //here I will resize the table
@@ -75,6 +77,8 @@ void HashTable::display() const {
             cout << "EMPTY" << endl;
         }
     }
+    cout << "Total Collisions: " << collisionCount << endl;
+    cout << "-----------------------" << endl;
 }
 
 //I will create a function to gathher only unsubscribed clients and insert them into the hash table.
