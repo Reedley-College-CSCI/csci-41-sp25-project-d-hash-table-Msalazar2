@@ -40,7 +40,7 @@ Bucket* tempTable = table;
 table = new Bucket[newSize];
 //here I generate a new hash number
 for (int i = 0; i < tempSize; ++i) {
-    if (tempTable[i].isOccupied) {
+    if (tempTable[i].isOccupied && !tempTable[i].isDeleted) {
         int newhashNum = tempTable[i].key % newSize;
         //repeat quadratic probing
         for (int j = 0; j < newSize; ++j) {
@@ -52,18 +52,22 @@ for (int i = 0; i < tempSize; ++i) {
         }
     }
 }
-return false;
+//free memory and update table size
+delete[] tempTable;
+TABLE_SIZE = newSize;
+//recall insert function
+return insert(key, value);
 }
 
 //I create a display function with client status
 void HashTable::display() const {
     for (int i = 0; i < TABLE_SIZE; ++i) {
-        cout << "[" << i << "] ";
+        cout << "[" << i << "]     ";
 
         if (table[i].isOccupied) {
             cout << "ID: " << table[i].key 
-                 << "| Subscription: " << table[i].value.subscription
-                 << "| Days Since Last Contact: " << table[i].value.lastContacted 
+                 << " | Subscription: " << table[i].value.subscription
+                 << " | Days Since Last Contact: " << table[i].value.lastContacted 
                  << endl;
         }
        
